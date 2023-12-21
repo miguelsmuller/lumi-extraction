@@ -2,10 +2,10 @@ import os
 import pdfplumber
 from typing import List
 
-
 from services.IExtract import IExtract
 from services.ExtractFromString import ExtractFromString
 from services.IExport import IExport
+from services.ExportToPostgreSQL import ExportToPostgreSQL
 from services.ExportToJSON import ExportToJSON
 from dtos.EnergyInvoiceDTO import EnergyInvoiceDTO
 
@@ -18,13 +18,11 @@ class Extraction:
         self.output: str = args.output
 
         self.extraction_algorithm: IExtract = ExtractFromString()
-        self.export_algorithm: IExport = ExportToJSON()
+        self.export_algorithm: IExport = ExportToPostgreSQL()
 
     def execute(self):
-        self.export_algorithm.export(
-            self.output, 
-            self._extract_data()
-        )
+        extracted_data = self._extract_data()
+        self.export_algorithm.export(extracted_data)
 
     def _extract_data(self) -> List[EnergyInvoiceDTO]:
         data_to_save = []
@@ -46,17 +44,3 @@ class Extraction:
         
         if not os.path.exists(args.input):
             raise Exception(f"The directory {args.input} does not exist.")
-        
-# # DEBUG DO PDF
-# debug = page.extract_words()
-# debug_file = os.path.splitext(file_name)[0]
-# output_file_path = os.path.join(self.output, f"{debug_file}.json")
-
-# with open(output_file_path, "w", encoding="utf-8") as json_file:
-#     json.dump(debug, json_file, ensure_ascii=False, indent=4)
-
-# # SALVA A IMAGEM
-# image = page.to_image()
-# image.draw_rects(page.extract_words())
-# image_path = os.path.join(self.output, f"{file_name}.png")
-# image.save(image_path, format="PNG")  
