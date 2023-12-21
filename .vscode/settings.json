@@ -1,0 +1,16 @@
+{
+    "[python]": {
+        "editor.formatOnSave": false
+    },
+    "cSpell.words": [
+        "lumi",
+        "Lumi",
+        "pdfplumber",
+        "pdfs",
+        "psycopg",
+        "rects",
+        "scee",
+        "sessionmaker",
+        "sqlalchemy"
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Extraction Debug",
+            "type": "python",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}",
+            "program": "app",
+            "args": [
+                "--extraction",
+                "--input",
+                "/mnt/d/developer/lumi-challenge/docs/FATURAS/Faturas - Teste Prático",
+                "--output",
+                "result"
+            ],
+        }
+    ]
+}
