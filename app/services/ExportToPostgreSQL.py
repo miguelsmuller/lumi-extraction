@@ -23,11 +23,11 @@ class ExportToPostgreSQL(IExport):
         return EnergyInvoiceModel(
             client_id=invoice.client_id,
             reference_month=invoice.reference_month,
+            electrical_energy_quantity=invoice.electrical_energy_quantity,
             electrical_energy_amount=invoice.electrical_energy_amount,
-            electrical_energy_value=invoice.electrical_energy_value,
+            electrical_energy_scee_quantity=invoice.electrical_energy_scee_quantity,
             electrical_energy_scee_amount=invoice.electrical_energy_scee_amount,
-            electrical_energy_scee_value=invoice.electrical_energy_scee_value,
+            electrical_energy_gdi_quantity=invoice.electrical_energy_gdi_quantity,
             electrical_energy_gdi_amount=invoice.electrical_energy_gdi_amount,
-            electrical_energy_gdi_value=invoice.electrical_energy_gdi_value,
             municipal_public_lighting_contribution=invoice.municipal_public_lighting_contribution
         )

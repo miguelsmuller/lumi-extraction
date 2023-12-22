@@ -3,7 +3,7 @@ from pdfplumber.page import Page
 from services.IExtract import IExtract
 from dtos.EnergyInvoiceDTO import EnergyInvoiceDTO
 
-class ExtractFromString(IExtract):
+class ExtractFromJSON(IExtract):
     def __init__(self):
         pass
         

@@ -1,6 +1,5 @@
 import uuid
 from sqlalchemy import func, Column, Integer, Float, String, TIMESTAMP
-from sqlalchemy_utils import UUIDType
 
 from config.DataBaseManager import Base
 
@@ -8,10 +7,9 @@ class EnergyInvoiceModel(Base):
     __tablename__ = "invoices"
 
     id = Column(
-        UUIDType(binary=False), 
-        primary_key=True,
-        default=uuid.uuid4,
-        index=True
+        Integer, 
+        primary_key=True, 
+        autoincrement=True
     )
     
     client_id = Column(
@@ -24,11 +22,15 @@ class EnergyInvoiceModel(Base):
         index=True
     )
     
+    electrical_energy_quantity = Column(
+        Float
+    )
+
     electrical_energy_amount = Column(
         Float
     )
 
-    electrical_energy_value = Column(
+    electrical_energy_scee_quantity = Column(
         Float
     )
 
@@ -36,15 +38,11 @@ class EnergyInvoiceModel(Base):
         Float
     )
 
-    electrical_energy_scee_value = Column(
+    electrical_energy_gdi_quantity = Column(
         Float
     )
 
     electrical_energy_gdi_amount = Column(
-        Float
-    )
-
-    electrical_energy_gdi_value = Column(
         Float
     )
 
@@ -59,5 +57,5 @@ class EnergyInvoiceModel(Base):
     )
 
     def __repr__(self):
-        return "<Book(id='{}', client_id='{}', electrical_energy_amount={}, electrical_energy_value={})>"\
-                .format(self.id, self.client_id, self.electrical_energy_amount, self.electrical_energy_value)
+        return "<Invoice (id='{}', client_id='{}', electrical_energy_quantity={}, electrical_energy_amount={})>"\
+                .format(self.id, self.client_id, self.electrical_energy_quantity, self.electrical_energy_amount)

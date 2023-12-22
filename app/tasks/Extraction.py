@@ -3,10 +3,14 @@ import pdfplumber
 from typing import List
 
 from services.IExtract import IExtract
+from services.ExtractFromJSON import ExtractFromJSON
 from services.ExtractFromString import ExtractFromString
+from services.ExtractFromCroppedImage import ExtractFromCroppedImage
+
 from services.IExport import IExport
 from services.ExportToPostgreSQL import ExportToPostgreSQL
 from services.ExportToJSON import ExportToJSON
+
 from dtos.EnergyInvoiceDTO import EnergyInvoiceDTO
 
 class Extraction:
@@ -17,11 +21,12 @@ class Extraction:
         self.input: str = args.input
         self.output: str = args.output
 
-        self.extraction_algorithm: IExtract = ExtractFromString()
+        self.extraction_algorithm: IExtract = ExtractFromCroppedImage()
         self.export_algorithm: IExport = ExportToPostgreSQL()
 
     def execute(self):
         extracted_data = self._extract_data()
+
         self.export_algorithm.export(extracted_data)
 
     def _extract_data(self) -> List[EnergyInvoiceDTO]:
