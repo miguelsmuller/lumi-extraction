@@ -9,7 +9,7 @@ class ExtractFromCroppedImage(IExtract):
     def __init__(self):
         locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 
-    def extract(self, data: Page) -> EnergyInvoiceDTO:        
+    def extract(self, data: Page) -> EnergyInvoiceDTO:
         client_id = self._extract_from_partial(data, 14, 149, 120, 162)
         reference_month = self._extract_from_partial(data, 240, 65, 345, 75)
         electrical_energy_quantity = self._extract_from_partial(data, 210, 243, 230, 252)
@@ -35,9 +35,9 @@ class ExtractFromCroppedImage(IExtract):
         return EnergyInvoiceDTO(**energy_invoice)
 
 
-    def _extract_from_partial(self, data, x0, top,  x1,  bottom):
+    def _extract_from_partial(self, data, x0, top, x1, bottom):
         # 0,   0,  595,    842
         # x0, top,  x1,  bottom
         
-        page_cutout = data.crop((x0, top,  x1,  bottom))
+        page_cutout = data.crop((x0, top, x1, bottom))
         return page_cutout.extract_text()
