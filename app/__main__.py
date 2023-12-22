@@ -1,5 +1,5 @@
 from config.ArgumentParser import ArgumentParser
-from features.Extraction import Extraction
+from tasks.Extraction import Extraction
 
 if __name__ == "__main__":
     arguments = ArgumentParser().parse()
