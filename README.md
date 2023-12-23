@@ -10,6 +10,40 @@ O projeto `Lumi Extraction` é uma das partes integrantes do monorepo `Lumi Chal
 
 - **[Lumi Front](https://github.com/miguelsmuller/lumi-front-for-target)**
 
+## **Estrutura do Projeto**
+```
+.
+├── app
+│   ├── __main__.py
+│   ├── tasks
+│   │    └── Extraction.py
+│   ├── dtos
+│   │   └── EnergyInvoiceDTO.py
+│   ├── models
+│   │   └── EnergyInvoiceModel.py
+│   ├── services
+│   │   ├── ExportToJSON.py
+│   │   ├── ExportToPostgreSQL.py
+│   │   ├── ExtractFromAI.py
+│   │   ├── ExtractFromCroppedImage.py
+│   │   ├── ExtractFromJSON.py
+│   │   ├── ExtractFromString.py
+│   │   ├── IExport.py
+│   │   └── IExtract.py
+│   └── config
+│       ├── ArgumentParser.py
+│       └── DataBaseManager.py
+├── .flake8
+├── .gitignore
+├── .pylintrc
+├── .python-version
+├── Makefile
+├── pyrightconfig.json
+├── README.md
+└── requirements.txt
+```
+
+
 ## **Rodando Localmente**
 
 Para executar a extração de dados localmente, utilize os seguintes comandos:
