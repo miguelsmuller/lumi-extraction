@@ -1,5 +1,5 @@
-import uuid
-from sqlalchemy import func, Column, Integer, Float, String, TIMESTAMP
+from sqlalchemy import func, Column, Integer, Float, Date, String, TIMESTAMP
+from datetime import datetime
 
 from config.DataBaseManager import Base
 
@@ -15,6 +15,11 @@ class EnergyInvoiceModel(Base):
     client_id = Column(
         String,
         index=True
+    )
+
+    invoice_date = Column(
+        Date,
+        nullable=False
     )
     
     reference_month = Column(
@@ -55,6 +60,10 @@ class EnergyInvoiceModel(Base):
         nullable=False, 
         server_default=func.now()
     )
+
+    def parse_date(date_str):
+        return datetime.strptime(date_str, '%d/%m/%Y').date()
+
 
     def __repr__(self):
         return "<Invoice (id='{}', client_id='{}', electrical_energy_quantity={}, electrical_energy_amount={})>"\

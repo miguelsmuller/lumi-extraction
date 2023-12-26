@@ -11,6 +11,7 @@ class ExtractFromCroppedImage(IExtract):
 
     def extract(self, data: Page) -> EnergyInvoiceDTO:
         client_id = self._extract_from_partial(data, 14, 149, 120, 162)
+        invoice_date = self._extract_from_partial(data, 381, 93, 421, 98)
         reference_month = self._extract_from_partial(data, 240, 65, 345, 75)
         electrical_energy_quantity = self._extract_from_partial(data, 210, 243, 230, 252)
         electrical_energy_amount = self._extract_from_partial(data, 300, 243, 340, 252)
@@ -22,6 +23,7 @@ class ExtractFromCroppedImage(IExtract):
 
         energy_invoice = {
             "client_id": client_id,
+            "invoice_date": invoice_date,
             "reference_month": reference_month,
             "electrical_energy_quantity": locale.atof(electrical_energy_quantity),
             "electrical_energy_amount": locale.atof(electrical_energy_amount),
@@ -40,4 +42,5 @@ class ExtractFromCroppedImage(IExtract):
         # x0, top,  x1,  bottom
         
         page_cutout = data.crop((x0, top, x1, bottom))
+        
         return page_cutout.extract_text()

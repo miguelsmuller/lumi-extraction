@@ -22,6 +22,7 @@ class ExportToPostgreSQL(IExport):
     def _create_model_from_dto(self, invoice: EnergyInvoiceDTO) -> EnergyInvoiceModel:
         return EnergyInvoiceModel(
             client_id=invoice.client_id,
+            invoice_date=EnergyInvoiceModel.parse_date(invoice.invoice_date),
             reference_month=invoice.reference_month,
             electrical_energy_quantity=invoice.electrical_energy_quantity,
             electrical_energy_amount=invoice.electrical_energy_amount,
